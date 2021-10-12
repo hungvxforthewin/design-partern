@@ -47,7 +47,7 @@ namespace singleton
         private static int creationCount1 = 0;
 
         //PRIVATE ONLY 1 INSTANCE OF CLASS 
-        //private static MySingletonService1 _mySingletonServiceInstance1 = new MySingletonService1(); ??? WHY
+        //private static MySingletonService1 _mySingletonServiceInstance1 = new MySingletonService1(); ??? WHY: CALL GETINSTANCE THEN INIT INSTACNE
         private static MySingletonService1 _mySingletonServiceInstance1 = null;
 
         //PRIVATE CONSTRUCTOR
