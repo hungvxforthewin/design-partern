@@ -50,6 +50,9 @@ namespace singleton
         //private static MySingletonService1 _mySingletonServiceInstance1 = new MySingletonService1(); ??? WHY: CALL GETINSTANCE THEN INIT INSTACNE
         private static MySingletonService1 _mySingletonServiceInstance1 = null;
 
+        //Thread Safe initialization
+        private static readonly object padlock = new object();
+
         //PRIVATE CONSTRUCTOR
         private MySingletonService1()
         {
@@ -63,11 +66,15 @@ namespace singleton
         {
             get
             {
-                if (_mySingletonServiceInstance1 == null)
+                lock (padlock)
                 {
-                    _mySingletonServiceInstance1 = new MySingletonService1();
+                    if (_mySingletonServiceInstance1 == null)
+                    {
+                        _mySingletonServiceInstance1 = new MySingletonService1();
+                    }
+                    return _mySingletonServiceInstance1;
                 }
-                return _mySingletonServiceInstance1;
+                
 
             }
         }
